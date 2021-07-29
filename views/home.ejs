@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/home.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+	<title>NPSS || VIT</title>
+</head>
+
+<body>
+	<header id="header">
+		<a href="#" class="logo">
+			<img class="logoimg" src="default_images/logo.png" alt="no image">
+			IEEE-NPSS VIT</a>
+		<div id="toggle"></div>
+		<div id="navbar">
+			<ul>
+				<li><a href="#home">HOME</a></li>
+				<li><a href="#events">EVENTS</a></li>
+				<li><a href="#gallery">GALLERY</a></li>
+				<li><a href="/board">BOARD</a></li>
+				<li><a href="#sponsors">SPONSORS</a></li>
+			</ul>
+		</div>
+	</header>
+
+	<script>
+		const header = document.getElementById("header");
+		const toggle = document.getElementById("toggle");
+		const navbar = document.getElementById("navbar");
+
+		document.onclick = function (e) {
+			if (e.target.id !== 'header' && e.target.id !== 'toggle' && e.target.id !== 'navbar') {
+				toggle.classList.remove('active');
+				navbar.classList.remove('active');
+			}
+		}
+
+		toggle.onclick = function () {
+			toggle.classList.toggle("active");
+			navbar.classList.toggle("active");
+		}
+	</script>
+
+	<section id="home">
+		<div class="loader">
+			<h2 class="chapter" data-text="IEEE NPSS VIT">IEEE NPSS VIT</h2>
+		</div>
+		<div class="para">
+			<a href="#about">KNOW MORE</a>
+		</div>
+
+		<div class="wave" id="wave1" style="--i:1"></div>
+		<div class="wave" id="wave2" style="--i:2"></div>
+		<div class="wave" id="wave3" style="--i:3"></div>
+		<div class="wave" id="wave4" style="--i:4"></div>
+
+	</section>
+
+	<script>
+		let wave1 = document.getElementById('wave1');
+		let wave2 = document.getElementById('wave2');
+		let wave3 = document.getElementById('wave3');
+		let wave4 = document.getElementById('wave4');
+
+
+		window.addEventListener('scroll', function () {
+			let value = window.scrollY;
+
+			wave1.style.backgroundPositionX = 400 + value * 4 + 'px';
+			wave2.style.backgroundPositionX = 300 + value * -4 + 'px';
+			wave3.style.backgroundPositionX = 200 + value * 2 + 'px';
+			wave4.style.backgroundPositionX = 100 + value * -2 + 'px';
+		})
+	</script>
+
+	<section id="about">
+		<p class="bac">ABOUT</p>
+		<div class="about">
+			<p class="aboutthe">IEEE Nuclear and Plasma Sciences Society (NPSS) VIT is the world's second and Asia's
+				first student chapter
+				of the IEEE NPSS league, which basically works with a motivating theme of Energy Renaissance. We
+				organize
+				events in the fields like Nuclear Science, Medical Imaging, Radiation and Plasma Medical Sciences and
+				other non-technical events. <br><br>
+				IEEE NPSS VIT has joined the league of other prominent professional student chapter functioning at a
+				university campus in the academic year of 2014-15. Energy & relative terminologies govern the
+				modernization of this gargantuan society. Nuclear and Plasma sciences,which is a confluence of several
+				disciplines excavates the riches of renewable and non-renewable source of energy though there is
+				ambiguity in the contradictory justification placed by researchers.
+			</p>
+			<img src="default_images/vitl.jpg" alt="image deleted">
+		</div>
+	</section>
+
+	<section id="events">
+		<p class="bac">EVENTS</p>
+		<div class="eventsbox">
+			<% if(foundevent.length < 12){ %>
+			<% for (var i=0; i <foundevent.length;  i++ ) { %>
+			<div class="event">
+				<img src="<%= foundevent[i].location %>" alt="no image">
+				<div class="span">
+					<p><%= foundevent[i].name %></p>
+					<div class="dropdown" style="float:right;">
+						<button class="evendescription">Read more</button>
+						<div class="dropdown-content">
+							<p><%= foundevent[i].eventinfo %></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% } %>
+			<% } else{ %>
+			<% for (var i=0; i <12;  i++ ) { %>
+			<div class="event">
+				<img src="<%= foundevent[i].location %>" alt="no image">
+				<div class="span">
+					<p><%= foundevent[i].name %></p>
+					<div class="dropdown" style="float:right;">
+						<button class="evendescription">Read more</button>
+						<div class="dropdown-content">
+							<p><%= foundevent[i].eventinfo %></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% } %>
+			<div class="eventmore">
+				<a href="/events">view more</a>
+			</div>
+			<% } %>
+		</div>
+	</section>
+
+
+	<section id="gallery">
+		<p class="bac">GALLERY</p>
+		<div class="pa">
+			<!-- Swiper -->
+			<div class="swiper-container gallery-top">
+				<div class="swiper-wrapper">
+					<% foundgallery.forEach(function(user){ %>
+					<div class="swiper-slide"><img src="<%= user.location %>" alt=" " style="object-fit: cover;"></div>
+					<% }) %>
+
+				</div>
+				<!-- Add Arrows -->
+				<div class="swiper-button-next swiper-button-white"></div>
+				<div class="swiper-button-prev swiper-button-white"></div>
+			</div>
+			<div class="swiper-container gallery-thumbs">
+			</div>
+		</div>
+
+		<!-- Swiper JS -->
+		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+		<!-- Initialize Swiper -->
+		<script>
+			var galleryThumbs = new Swiper('.gallery-thumbs', {
+				spaceBetween: 10,
+				slidesPerView: 4,
+				freeMode: true,
+				watchSlidesVisibility: true,
+				watchSlidesProgress: true,
+			});
+			var galleryTop = new Swiper('.gallery-top', {
+				spaceBetween: 10,
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev',
+				},
+				thumbs: {
+					swiper: galleryThumbs
+				}
+			});
+		</script>
+	</section>
+
+
+
+	<section id="sponsors">
+		<p class="bac">SPONSORS</p>
+		<div class="swiper-container1">
+			<div class="swiper-wrapper">
+				<% foundsponsors.forEach(function(user){ %>
+				<div class="swiper-slide"><img src="<%= user.location %>" alt="no image"></div>
+				<% }) %>
+			</div>
+
+			<div class="swiper-pagination"></div>
+		</div>
+
+	</section>
+
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+	<script>
+		var swiper = new Swiper('.swiper-container1', {
+			effect: 'coverflow',
+			grabCursor: true,
+			centeredSlides: true,
+			slidesPerView: 'auto',
+			coverflowEffect: {
+				rotate: 10,
+				stretch: -100,
+				depth: 200,
+				modifier: 4,
+				slideShadows: true,
+			},
+			loop: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+		});
+	</script>
+
+	<div id="contact">
+		<div class="bullitiens">
+			<div class="boxes">
+				<h2>Learn More</h2>
+				<ul>
+					<li><a href="#">Learn About NPSS?</a></li>
+					<li><a href="#">What is NPSS?</a></li>
+					<li><a href="#">History of NPSS</a></li>
+				</ul>
+			</div>
+			<div class="boxes">
+				<h2>Founders and Board</h2>
+				<ul>
+					<li><a href="/board">Faculty and Founders</a></li>
+					<li><a href="/board/#present">Board</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="line"></div>
+		<div class="alining">
+			<div class="contact">
+				<span><img src="default_images/logo.png" alt=""> IEEE-NPSS VIT</span>
+				<span><a href="https://goo.gl/maps/RPCT9hSUxn9U4Bxu8"><i
+							class="fa fa-map-marker-alt"></i>VIT,vellore-632014</a></span>
+				<span><a href="tel:9542058885"><i class="fa fa-phone"></i>+91 95420 58885</a></span>
+				<span><a href="mailto:ieeenpss@vit.ac.in"><i class="fa fa-envelope"></i>ieeenpss@vit.ac.in</a></span>
+			</div>
+		</div>
+		<div class="line"></div>
+		<div class="socialmedia">
+			<span>Be in Touch</span>
+			<span><a href="https://www.facebook.com/ieeenpss.vit/"><i class="fab fa-facebook-f"></i></a></span>
+			<span><a href="https://instagram.com/ieee_npss?igshid=19t2p1druy34f"><i
+						class="fab fa-instagram"></i></a></span>
+			<span><a href="https://www.linkedin.com/company/ieee-npss-vit-chapter/"><i
+						class="fab fa-linkedin-in"></i></a></span>
+		</div>
+		<div class="line"></div>
+		<div class="copyright">
+			<p id="year">Copyright © 2020 by IEEE-NPSS VIT</p>
+		</div>
+	</div>
+
+	<script>
+		var d = new Date();
+		var n = d.getFullYear();
+
+		document.getElementById('year').innerHTML = "Copyright © " + n + " by IEEE-NPSS VIT";
+	</script>
+
+	<canvas id="my-canvas"></canvas>
+
+	<script src="js/index.min.js"></script>
+
+	<script>
+		var display = document.getElementsByTagName("canvas");
+		var confettiSettings = {
+			target: 'my-canvas',
+			max: 1000,
+			respawn: false,
+			props: ['circle', 'square', 'triangle', 'line'],
+			colors: [
+				[137, 207, 235],
+				[245, 245, 245],
+				[255, 255, 255],
+				[18, 51, 78],
+				[33, 52, 59],
+				[30, 76, 201]
+			],
+			clock: 50
+		};
+		var confetti = new ConfettiGenerator(confettiSettings);
+
+		confetti.render();
+	</script>
+
+</body>
+
+</html>

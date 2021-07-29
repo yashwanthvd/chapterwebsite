@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+	<link rel="stylesheet" href="css/adminpage.css">
+	<title>Admin Panel</title>
+</head>
+
+<body>
+	<a class="log" href="/admin">LOGOUT</a>
+	<section>
+		<div class="div">
+			<h1>SPONSORS</h1>
+			<form action="/editsponsors" method="post" enctype="multipart/form-data">
+				<label>sponsors name</label><br>
+				<input type="text" placeholder="name" name="name"><br>
+				<label>upload image</label><br>
+				<input type="file" name="file"><br>
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+
+		<div class="div">
+			<h1>Gallery</h1>
+			<form action="/editgallery" method="post" enctype="multipart/form-data">
+				<label>gallery image</label><br>
+				<input type="file" name="file"><br>
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+
+		<div class="div">
+			<h1>EVENT</h1>
+			<form action="/editevent" method="post" enctype="multipart/form-data">
+				<label>NEW EVENT</label><br>
+				<label>event name</label><br>
+				<input type="text" name="ename"><br>
+				<label>image</label>
+				<input type="file" name="file"><br>
+				<label>event info</label><br>
+				<input type="text" name="eventinfo"><br>
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+
+		<div class="div board">
+			<h1>BOARD</h1>
+			<form action="/editboard" method="POST" enctype="multipart/form-data">
+				<label>Name</label><br>
+				<input type="text" name="name"><br>
+				<label>Choose ur domain:</label><br>
+				<select name="board">
+					<option value="chair">chair</option>
+					<option value="vice chair">vice chair</option>
+					<option value="hr">hr</option>
+					<option value="technical head">technical</option>
+					<option value="design head">design</option>
+					<option value="documentation head">documentation</option>
+					<option value="finance head">finance</option>
+					<option value="event head">event</option>
+					<option value="publicity head">publicity</option>
+					<option value="management head">management</option>
+				</select><br><br>
+				<label>image</label><br>
+				
+				<input type="file" name="file"><br><br>
+				<label>FB link</label><br>
+				<input type="url" name="fb"><br>
+				<label>insta link</label><br>
+				<input type="url" name="insta"><br>
+				<label>linked in link</label><br>
+				<input type="url" name="twitter"><br><br>
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+	</section>
+
+	<section>
+		<div class="ev">
+			<h1>event</h1>
+			<% foundevent.forEach(function(user){ %>
+			<div class="event">
+				<img src="<%= user.location %>" alt="no image" width="100px" height="100px">
+				<div class="span">
+					<h2><%= user.name %></h2>
+					<a href="/delete?event=<%= user._id %>"><i class="fas fa-trash"></i></a>
+				</div>
+				<br>
+			</div>
+			<% }) %>
+		</div>
+
+		<div class="ev">
+			<h1>Sponsor</h1>
+			<% foundsponsors.forEach(function(user){ %>
+			<div class="swiper-slide"><img src="<%= user.location %>" alt="no image" width="100px" height="100px"></div>
+			<a href="/delete?sponsor=<%= user._id %>"><i class="fas fa-trash"></i></a>
+			<% }) %>
+		</div>
+
+		<div class="ev">
+			<h1>gallery</h1>
+			<% foundgallery.forEach(function(user){ %>
+				<div class="swiper-slide"><img src="<%= user.location %>" alt=" " width="100px" height="100px"></div>
+				<a href="/delete?gallery=<%= user._id %>"><i class="fas fa-trash"></i></a>
+			<% }) %>
+		</div>
+	</section>
+
+</body>
+
+</html>

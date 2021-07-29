@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: Poppins, sans-serif;
+			scroll-behavior: smooth
+		}
+
+		body {
+			background: #87ceeb;
+			min-height: 100vh;
+			max-height: 100vh;
+			width: 100%;
+			overflow: hidden
+		}
+
+		section {
+			height: 100vh
+		}
+
+		div {
+			width: 300px;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			padding: 20px;
+			background: rgba(255, 255, 255, .25);
+			box-shadow: 0 8px 32px 0 rgba(31, 38, 135, .37);
+			border-radius: 10px;
+			border: 1px solid rgba(255, 255, 255, .18);
+			z-index: 1
+		}
+
+		div h1 {
+			font-size: 50px;
+			margin-bottom: 20px;
+			color: #21343b;
+			text-decoration: underline
+		}
+
+		button,
+		input {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 18px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box
+		}
+
+		button {
+			width: 100%;
+			color: #fff;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			background-color: #21343b
+		}
+
+		button:hover {
+			background-color: #666
+		}
+	</style>
+	<title>ADMIN || NPSS</title>
+</head>
+
+<body>
+	<section id="particles-js">
+		<div>
+			<h1>Admin</h1>
+			<form action="/admin" method="post">
+				<input type="text" name="name" placeholder="name"><br>
+				<input type="password" name="password" placeholder="password"><br>
+				<button type="submit">SUBMIT</button>
+			</form>
+		</div>
+	</section>
+	<script src="js/particles.js"></script>
+	<script src="js/app.js"></script>
+</body>
+
+</html>
